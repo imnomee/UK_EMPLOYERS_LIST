@@ -9,15 +9,7 @@ const employerSchema = new mongoose.Schema(
         typeRating: String,
         route: String,
     },
-    {
-        // Assign a function to the "query" object of our animalSchema through schema options.
-        // By following this approach, there is no need to create a separate TS type to define the type of the query functions.
-        query: {
-            byOrganisation(name) {
-                return this.where({ name: new RegExp(name, 'i') });
-            },
-        },
-    }
+    { timestamps: true }
 );
 
 // Create indexes

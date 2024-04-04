@@ -1,9 +1,15 @@
 import { Router } from 'express';
-import { getAllEmployers, getSingleEmployer } from './emp.controllers.js';
+import {
+    createEmployer,
+    deleteEmployer,
+    getAllEmployers,
+    getSingleEmployer,
+} from './emp.controllers.js';
 
 const router = Router();
 
-router.get('/', getAllEmployers);
-router.get('/:name', getSingleEmployer);
+router.route('/').get(getAllEmployers).post(createEmployer);
+router.route('/:id').delete(deleteEmployer);
+router.get('/search', getSingleEmployer);
 
 export default router;
