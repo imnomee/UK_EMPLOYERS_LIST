@@ -457,6 +457,26 @@ body {
     transform: none;
 }
 
+.goto-page {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.goto-page-input {
+    padding: 0.5rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    width: 100px;
+}
+
+.goto-page-input:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 1rem;

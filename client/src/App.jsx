@@ -14,6 +14,7 @@ function App() {
     const [deletingId, setDeletingId] = useState(null);
     const [statusDropdownId, setStatusDropdownId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [gotoPageInput, setGotoPageInput] = useState('');
     const [pagination, setPagination] = useState({
         total: 0,
         pages: 1,
@@ -122,6 +123,18 @@ function App() {
             searchRoute,
             newPage
         );
+    };
+
+    const handleGotoPage = () => {
+        const pageNum = parseInt(gotoPageInput, 10);
+        if (!isNaN(pageNum) && pageNum >= 1 && pageNum <= pagination.pages) {
+            handlePageChange(pageNum);
+            setGotoPageInput('');
+        } else {
+            setError(
+                `Please enter a valid page number between 1 and ${pagination.pages}`
+            );
+        }
     };
 
     const startEditing = (employer) => {
@@ -488,6 +501,28 @@ function App() {
                                 <span className="pagination-info">
                                     Page {currentPage} of {pagination.pages}
                                 </span>
+                                <div className="goto-page">
+                                    <input
+                                        type="number"
+                                        min="1"
+                                        max={pagination.pages}
+                                        value={gotoPageInput}
+                                        onChange={(e) =>
+                                            setGotoPageInput(e.target.value)
+                                        }
+                                        onKeyPress={(e) =>
+                                            e.key === 'Enter' &&
+                                            handleGotoPage()
+                                        }
+                                        placeholder="Go to page..."
+                                        className="goto-page-input"
+                                    />
+                                    <button
+                                        className="btn btn-small btn-primary"
+                                        onClick={handleGotoPage}>
+                                        Go
+                                    </button>
+                                </div>
                                 <button
                                     className="btn btn-small btn-secondary"
                                     onClick={() =>
